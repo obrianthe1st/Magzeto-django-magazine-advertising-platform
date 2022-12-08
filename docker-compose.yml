@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14-alpine
+    env_file:
+      - ./.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - live
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py runserver 0.0.0.0:8000"
+
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    networks:
+      - live
+    links:
+      - db
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server"]
+    networks:
+      - live
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A app worker -l info
+    volumes:
+      - ./src:/src
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+      - app
+    networks:
+      - live
+
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5555:5555"
+    command: "celery -A app flower --address=0.0.0.0"
+    depends_on:
+      - celery
+    networks:
+      - live
+
+volumes:
+  pgdata:
+
+networks:
+  live:
