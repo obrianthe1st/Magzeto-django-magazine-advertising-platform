@@ -14,6 +14,10 @@ docker-compose up -d --build --force-recreate
 
 # Celery
 
+http://localhost:5555/ (address to to view celery tasks)
+
+docker-compose run celery sh -c "celery -A core.tasks worker --loglevel=INFO"
+
 # Django
 
 # Postgres

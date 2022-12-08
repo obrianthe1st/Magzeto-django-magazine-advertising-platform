@@ -103,6 +103,8 @@ accept_content = ['application/json']
 result_serializer = 'json'
 task_serializer = 'json'
 
+timezone ='America/NewYork'
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
