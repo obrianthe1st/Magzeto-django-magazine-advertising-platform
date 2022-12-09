@@ -17,6 +17,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+#We are now setting the authenticated user model to the one in which we created
+AUTH_USER_MODEL = 'authors.Author'
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -38,8 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'celery',
+
+    #local
     'core',
+    'apps.authors',
+
+    #third party
+    'celery',
     'django_celery_results',
     'django_celery_beat',
 ]
@@ -59,7 +69,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,10 +148,75 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),
+                    os.path.join(BASE_DIR, 'media')]
+
+#this will be for the cdn
+STATIC_ROOT = os.path.join(BASE_DIR,'static_cdn') 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media_cdn') 
+
+
+STATICFILES_FINDERS = [
+"django.contrib.staticfiles.finders.FileSystemFinder",
+"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    'version':1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        "verbose":{
+            "format":"{asctime} - {levelname} - {lineno} - {module} - {message}",
+            "style": "{",
+        },
+
+    },
+
+    'handlers': {
+        'console': { # this handler logs to the console
+            'class': "logging.StreamHandler", #streamhandler writes the logging to the console
+            'formatter': "verbose",
+        },
+
+        'log_file':{
+            'class': "logging.FileHandler",
+            'filename': f"{BASE_DIR}/logs/info.log",
+            "formatter": "verbose",
+
+        },
+
+        'log_db':{
+            'class': "logging.FileHandler",
+            'filename': f"{BASE_DIR}/logs/db.log",
+            "formatter": "verbose",
+        },
+
+    },
+
+    'loggers': {
+        'main': {
+            'handlers': ['log_file','console'],
+            'propogate': True,
+            'level': 'INFO',
+        },
+        'main2': {
+            'handlers': ['log_db','console'],
+            'propogate': True,
+            'level': 'WARNING',
+        },
+
+    },
+}
+
+
+

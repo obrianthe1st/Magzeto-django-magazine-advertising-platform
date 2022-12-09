@@ -7,7 +7,7 @@ RUN apk add --update --no-cache --virtual .tmp-build-deps \
     gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev \
      && apk add libffi-dev 
 RUN pip install --upgrade pip
-RUN pip install -r --no-cache-dir /requirements.txt
+RUN pip install -r ./requirements.txt
 RUN apk del .tmp-build-deps
 
 
