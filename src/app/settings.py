@@ -169,54 +169,87 @@ STATICFILES_FINDERS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+####################################################################################################
 
-LOGGING = {
-    'version':1,
-    'disable_existing_loggers': False,
+if DEBUG:
+     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
-    'formatters': {
-        "verbose":{
-            "format":"{asctime} - {levelname} - {lineno} - {module} - {message}",
-            "style": "{",
-        },
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
 
-    },
 
-    'handlers': {
-        'console': { # this handler logs to the console
-            'class': "logging.StreamHandler", #streamhandler writes the logging to the console
-            'formatter': "verbose",
-        },
 
-        'log_file':{
-            'class': "logging.FileHandler",
-            'filename': f"{BASE_DIR}/logs/info.log",
-            "formatter": "verbose",
+if DEBUG:
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
-        },
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.history.HistoryPanel',
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.profiling.ProfilingPanel',
+]
 
-        'log_db':{
-            'class': "logging.FileHandler",
-            'filename': f"{BASE_DIR}/logs/db.log",
-            "formatter": "verbose",
-        },
+#######################################################################################################
 
-    },
+# LOGGING = {
+#     'version':1,
+#     'disable_existing_loggers': False,
 
-    'loggers': {
-        'main': {
-            'handlers': ['log_file','console'],
-            'propogate': True,
-            'level': 'INFO',
-        },
-        'main2': {
-            'handlers': ['log_db','console'],
-            'propogate': True,
-            'level': 'WARNING',
-        },
+#     'formatters': {
+#         "verbose":{
+#             "format":"{asctime} - {levelname} - {lineno} - {module} - {message}",
+#             "style": "{",
+#         },
 
-    },
-}
+#     },
+
+#     'handlers': {
+#         'console': { # this handler logs to the console
+#             'class': "logging.StreamHandler", #streamhandler writes the logging to the console
+#             'formatter': "verbose",
+#         },
+
+#         'log_file':{
+#             'class': "logging.FileHandler",
+#             'filename': f"{BASE_DIR}/logs/info.log",
+#             "formatter": "verbose",
+
+#         },
+
+#         'log_db':{
+#             'class': "logging.FileHandler",
+#             'filename': f"{BASE_DIR}/logs/db.log",
+#             "formatter": "verbose",
+#         },
+
+#     },
+
+#     'loggers': {
+#         'main': {
+#             'handlers': ['log_file','console'],
+#             'propogate': True,
+#             'level': 'INFO',
+#         },
+#         'main2': {
+#             'handlers': ['log_db','console'],
+#             'propogate': True,
+#             'level': 'WARNING',
+#         },
+
+#     },
+# }
 
 
 

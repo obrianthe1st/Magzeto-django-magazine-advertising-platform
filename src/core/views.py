@@ -21,5 +21,5 @@ def test_celery(request):
     """
     #add.delay()
     #logger.info("something is wrong with my db problem")
-    return HttpResponse("Done")
+    return HttpResponse("<body>Done</body>")
 

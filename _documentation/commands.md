@@ -16,6 +16,8 @@ http://localhost:5555/ (address to to view celery tasks)
 
 docker-compose run celery sh -c "celery -A core.tasks worker --loglevel=INFO"
 
+django-admin runserver --settings=production.settings
+
 # Django
 
 1. Create docker apps
