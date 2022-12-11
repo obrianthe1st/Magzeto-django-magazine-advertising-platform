@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     #local
     'core',
     'apps.authors',
+    'apps.article',
+    'apps.category',
 
     #third party
     'celery',
