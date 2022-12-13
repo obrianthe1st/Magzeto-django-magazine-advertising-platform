@@ -1,0 +1,489 @@
+@font-face {
+  font-family: roboto-bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold-italic;
+  src: url(../fonts/Roboto-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+@font-face {
+  font-family: roboto-medium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+:root {
+  --primary: #1d67de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: roboto-italic, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***********************************************Header**********************************************/
+.header-banner {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  padding: 30px;
+}
+
+.header-banner--date {
+  font-size: 25px;
+}
+
+.header-banner--heading {
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.header-banner--subscription button {
+  background-color: yellow;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+/***********************************************Header**********************************************/
+
+/***********************************************Navbar*******************************************/
+.navigation {
+  margin-top: 20px;
+}
+
+.navbar-collapse .navbar-nav .nav-item .nav-link {
+  font-size: 25px;
+  font-family: roboto-bold, sans-serif;
+  color: black;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  color: var(--primary);
+}
+
+.navbar-collapse .form-inline input {
+  height: 20px;
+}
+
+/***********************************************Navbar*******************************************/
+
+/***********************************************Topnews*****************************************/
+.top-news {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-news--heading {
+  font-weight: 400;
+  color: grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.top-news .top-news--article {
+  padding: 20px;
+}
+
+.top-news .articles .top-news--article .top-news--article-info img {
+  height: 300px;
+  width: 300px;
+}
+
+.top-news .articles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-news .articles .top-news-article--meta-data {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 88.5%;
+}
+
+.top-news .articles .top-news-article--meta-data .top-news--article-category {
+  background-color: var(--primary);
+  font-size: 20px;
+  padding: 10px;
+}
+
+.top-news .articles .top-news-article--meta-data .top-news--article-category a {
+  text-decoration: none;
+  color: white;
+}
+
+.top-news .articles .top-news-article--meta-data .fa-solid {
+  font-size: 20px;
+  color: white;
+}
+
+.top-news .articles .top-news-article--meta-data .rankings {
+  margin-left: 20px;
+}
+
+.top-news .articles .top-news--article-title {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.top-news .articles .top-news--article-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.top-news .articles .top-news--article-title a:hover {
+  color: var(--primary);
+}
+
+.top-news .articles .top-news--article-desc {
+  font-size: 15px;
+}
+
+/***********************************************Topnews*****************************************/
+/************************************************Politics**************************************/
+.articles--layout {
+  margin-top: 70px;
+  margin-left: 100px;
+  position: relative;
+}
+
+.articles--layout-heading {
+  margin-left: -150px;
+  font-weight: 400;
+  color: grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.articles--layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.articles--layout .articles--layout-card-info img {
+  height: 300px;
+  width: 300px;
+}
+
+.articles--layout .articles--layout-card-info {
+  padding: 10px;
+  width: 50%;
+}
+
+.articles--layout .articles--layout-card-info .articles--layout-title {
+  width: 60%;
+}
+
+.articles-layout--article-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.articles--layout .articles--layout-card-info .articles--layout-title {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.articles--layout .articles--layout-card-info .articles--layout-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.articles--layout .articles--layout-card-info .articles--layout-title a:hover {
+  color: var(--primary);
+}
+
+.articles--layout-article-category {
+  background-color: var(--primary);
+  font-size: 20px;
+  padding: 10px;
+  width: 20%;
+}
+
+.articles--layout-article-category a {
+  text-decoration: none;
+  color: white;
+}
+
+.articles--layout-article-desc {
+  width: 70%;
+  font-size: 15px;
+}
+/************************************************Politics*************************************/
+
+/*********************************************Lead Stories***********************************/
+.latest-stories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.latest-stories .stories .stories--heading {
+  font-size: 30px;
+  color: grey;
+  margin: 20px;
+}
+
+.latest-stories .stories .story-card-info img {
+  width: 250px;
+  height: 250px;
+}
+
+.latest-stories .stories .story-card-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.latest-stories .stories .story-card-info .story-card--info-metadata {
+  padding: 10px;
+  margin-top: -40px;
+  padding: 10px;
+}
+
+.latest-stories
+  .stories
+  .story-card-info
+  .story-card--info-metadata
+  .story-card--heading {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.latest-stories
+  .stories
+  .story-card-info
+  .story-card--info-metadata
+  .story-card--heading
+  a {
+  text-decoration: none;
+  color: black;
+}
+
+.latest-stories
+  .stories
+  .story-card-info
+  .story-card--info-metadata
+  .story-card--heading
+  a:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.latest-stories .stories .story-card-info .story-card--info-metadata p {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.latest-stories .stories .story-card-info .story-card--info-category {
+  background-color: var(--primary);
+  font-size: 20px;
+  padding: 10px;
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.latest-stories .stories .story-card-info .story-card--info-category a {
+  text-decoration: none;
+  color: white;
+}
+
+.latest-stories .sponsored--ads-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(167, 162, 162);
+  width: 40%;
+  margin: 10px;
+  padding: 20px;
+  height: 80%;
+}
+
+.latest-stories .sponsored--ads-container h4 {
+  font-size: 20px;
+}
+
+.latest-stories .sponsored--ads-container .advert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.latest-stories .sponsored--ads-container .advert img {
+  height: 100px;
+  width: 100px;
+}
+
+.latest-stories .sponsored--ads-container .advert .advert--desc {
+  width: 60%;
+}
+
+.latest-stories .sponsored--ads-container .advert button {
+  border: none;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 500;
+}
+/*********************************************Lead Stories***********************************/
+
+/********************************************around the world********************************/
+.around-the-world {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.around-the-world--articles-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.around-the-world--articles-row .around-the-world--article-card {
+  margin: 10px;
+  padding: 10px;
+}
+
+.around-the-world--article-card .around-the-world--article-card-info img {
+  height: 300px;
+  width: 300px;
+}
+
+.around-the-world--article-card .around-the-world-article-info-category {
+  background-color: var(--primary);
+  font-size: 20px;
+  padding: 10px;
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.around-the-world--article-card .around-the-world-article-info-category a {
+  text-decoration: none;
+  color: white;
+}
+
+.around-the-world--article-card .around-the-world-article-card-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.around-the-world--article-card .around-the-world-article-card-title a:hover {
+  text-emphasis: none;
+  color: var(--primary);
+}
+/********************************************around the world********************************/
+
+/********************************************Subscription********************************/
+
+.subscription {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.subscription .subscription--call-to-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(212, 208, 208);
+  padding: 15px;
+}
+
+.subscription .subscription--call-to-action img {
+  height: 300px;
+  width: 200px;
+}
+
+.subscription .subscription--call-to-action .subscription--info h5 {
+  font-size: 40px;
+  font-family: roboto-bold, sans-serif;
+  margin: 10px;
+}
+
+.subscription .subscription--call-to-action .subscription--info p {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.subscription .subscription-btn {
+  font-size: 15px;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  background-color: orange;
+}
+
+.subscription .subscription-btn a {
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+/********************************************Subscription********************************/
+/*******************************************Footer***************************************/
+.footer {
+  font-size: 15px;
+}
+
+.footer .social-links .fab {
+  font-size: 25px;
+}
+/*******************************************Footer***************************************/

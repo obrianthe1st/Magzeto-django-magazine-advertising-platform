@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/category.css' %}" />
+{% endblock css %}
+    
+
+{% block content %} 
+    <section class="row--container container">
+        <h5 class="row--container-title">{{category.name|upper}}</h5>
+        <div class="row--container-articles row">
+          {% if articles %}
+          {% for each_article in articles %}
+          <div class="row--container--info  col">
+            <div class="row--container--info-card">
+                <div class="row--container--info-card-img-data">
+                    <img src="{{each_article.image.url}}" alt="trump">
+                    <div class="row--container--info-category"><a href="{{category.get_absolute_url}}">{{category.name}}</a></div>
+                </div>
+                <h5 class="row--container--info-card-title"><a href="#">{{each_article.title}}</a></h5>
+                <p class="row--container--info-card-text">{{rach_article.posts|truncatechars:300}}</p>
+            </div>
+        </div>
+          
+          {% endfor %}
+          
+        {% else %}
+        <div class="no-categories">
+            <img src="{% static 'images/no-categories.jpg'%}"> 
+        </div>
+          
+        {% endif %}
+            {% comment %} <div class="w-100"></div> {% endcomment %}
+        </div>
+
+    </section>
+    <section class="paginator__section container">
+        <nav aria-label="Page navigation example">
+            {% if articles.has_other_pages %}            
+            <ul class="pagination">
+                {% if articles.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="{{articles.has_previous}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                {% endif %}
+                {% for i in articles.paginator.page_range %}
+                {% if articles.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>  
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>               
+                {% endif %}
+                {% endfor %}
+                {% if articles.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{articles.next_page_number}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+
+                {% endif %}
+
+            {% endif %}
+        </nav>
+    </section>
+{% endblock content %}
