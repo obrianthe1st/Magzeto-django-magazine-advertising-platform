@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<section class="search-section container">
+    {% include 'includes/search_section_form.html' %}
+    {% include 'includes/search_section_ads.html' %}
+    {% if articles %}
+    <div class="search-section--results">
+        {% for article in articles %}
+        <div class="search-section--search-result">
+            <img src="{{article.image.url}}" alt="musk">
+            <div class="search-section--result-meta-data">
+                <h5 class="search-section--result-category"><a href="{{article.category.get_absolute_url}}">{{article.category.name}}</a></h5>
+                <h4 class="search-section--result-title"><a href="{{article.get_absolute_url}}">{{article.title}}</a></h4>
+                <p class="search-section--result-snippet">{{article.posts|truncatechars:300}}</p>
+            </div>
+        </div>
+        <hr class="horizontal--line">
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-searches">
+        <img src="{% static 'images/no-categories.jpg'%}"> 
+    </div>
+    
+    {% endif %}
+    
+
+
+</section>
+
+{% endblock content %}
+
+

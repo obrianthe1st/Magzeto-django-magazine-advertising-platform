@@ -1,5 +1,6 @@
 import logging
 
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -61,3 +62,28 @@ def home_view(request):
 
     return render(request,'home.html',context)
 
+
+def search_view(request):
+    """_summary_
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    articles = None
+
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            articles = Article.objects.filter(Q(title__icontains=keyword))
+            if articles is None:
+                articles = Article.objects.filter(Q(posts__icontains=keyword))
+
+    context={
+        'articles':articles,
+        'keyword':keyword,
+    }
+
+    return render(request,'search.html',context)

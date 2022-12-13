@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 from ..authors.models import Author
 from ..category.models import Category, Tag
@@ -27,6 +28,15 @@ class Article(models.Model):
    def __str__(self):
     return self.title
 
-#    def get_absolute_url(self):
-#        return reverse("model_detail", args={self.pk})
+   def get_absolute_url(self):
+       return reverse("article", args=[self.category.slug,self.slug])
+
+   @property
+   def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url=''
+
+        return url
    

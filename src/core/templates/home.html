@@ -14,7 +14,7 @@
                                     class="fa-solid fa-fire"></i></span></div>
 
                     </div>
-                    <h5 class="top-news--article-title"><a href="#">{{each_article.title}}</a>
+                    <h5 class="top-news--article-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a>
                     </h5>
 
                     <div class="top-news--article-desc">
@@ -35,7 +35,7 @@
                 <div class="articles--layout-card-info">
                     <img src="{{each_article.image.url}}" alt="xi-trump">
                     <div class="articles--layout-article-category"><a href="#">{{each_article.category.name}}</a></div>
-                    <h5 class="articles--layout-title"><a href="#">{{each_article.title}}</a>
+                    <h5 class="articles--layout-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a>
                     </h5>
                     <div class="articles--layout-article-desc">
                         <p>{{each_article.posts|truncatechars:300}}</p>
@@ -49,7 +49,7 @@
                 <div class="articles--layout-card-info">
                     <img src="{{each_article.image.url}}" alt="xi-trump">
                     <div class="articles--layout-article-category"><a href="#">{{each_article.category.name}}</a></div>
-                    <h5 class="articles--layout-title"><a href="#">{{each_article.title}}</a>
+                    <h5 class="articles--layout-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a>
                     </h5>
                     <div class="articles--layout-article-desc">
                         <p>{{each_article.posts|truncatechars:300}}</p>
@@ -93,7 +93,7 @@
                     <div class="story-card--info-category" style="padding-right: 50px"><a href="#">{{each_article.category.name|upper}}</a></div>
                 </div>
                 <div class="story-card--info-metadata">
-                    <h5 class="story-card--heading"><a href="#">{{each_article.title}}
+                    <h5 class="story-card--heading"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}
                         </a></h5>
                     <p>{{each_article.posts|truncatechars:800}}</p>
                 </div>
@@ -109,9 +109,9 @@
             <div class="around-the-world--article-card">
                 <div class="around-the-world--article-card-info">
                     <img src="{{each_article.image.url}}" alt="musk">
-                    <div class="around-the-world-article-info-category"><a href="#">{{each_article.category.name}}</a></div>
+                    <div class="around-the-world-article-info-category"><a href="{{each_article.category.get_absolute_url}}">{{each_article.category.name}}</a></div>
                 </div>
-                <h5 class="around-the-world-article-card-title"><a href="#">{{each_article.title}}</a></h5>
+                <h5 class="around-the-world-article-card-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a></h5>
             </div>
             {% endfor %}
         </div>
@@ -120,9 +120,9 @@
             <div class="around-the-world--article-card">
                 <div class="around-the-world--article-card-info">
                     <img src="{{each_article.image.url}}" alt="musk">
-                    <div class="around-the-world-article-info-category"><a href="#">{{each_article.category.name}}</a></div>
+                    <div class="around-the-world-article-info-category"><a href="{{each_article.category.get_absolute_url}}">{{each_article.category.name}}</a></div>
                 </div>
-                <h5 class="around-the-world-article-card-title"><a href="#">{{each_article.title}}</a></h5>
+                <h5 class="around-the-world-article-card-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a></h5>
             </div>
             {% endfor %}
         </div>

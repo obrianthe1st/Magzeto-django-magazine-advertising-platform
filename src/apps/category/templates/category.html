@@ -17,7 +17,7 @@
                     <img src="{{each_article.image.url}}" alt="trump">
                     <div class="row--container--info-category"><a href="{{category.get_absolute_url}}">{{category.name}}</a></div>
                 </div>
-                <h5 class="row--container--info-card-title"><a href="#">{{each_article.title}}</a></h5>
+                <h5 class="row--container--info-card-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a></h5>
                 <p class="row--container--info-card-text">{{rach_article.posts|truncatechars:300}}</p>
             </div>
         </div>

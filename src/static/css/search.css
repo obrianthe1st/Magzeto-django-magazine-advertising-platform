@@ -103,8 +103,24 @@ a {
   color: var(--primary);
 }
 
+.search_form_nav {
+  display: none;
+}
+
 .navbar-collapse .form-inline input {
   height: 20px;
+}
+
+.no-searches {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-searches img {
+  height: 400px;
+  width: 400px;
 }
 
 /***********************************************Navbar*******************************************/

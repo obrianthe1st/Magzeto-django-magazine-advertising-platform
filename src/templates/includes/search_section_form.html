@@ -1,0 +1,18 @@
+{% load static %}
+<div class="search-section--form">
+  <h6 class="search-section--form-header">Search Results</h6>
+  <h6 class="search-section--form-meta-data">You searched for "{{keyword}}"</h6>
+  <form action="{% url 'search' %}" class="search-form" method="GET">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      style="box-shadow: none"
+      name="keyword"
+    />
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+</div>

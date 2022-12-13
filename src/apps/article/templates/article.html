@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+    <section class="article-container container">
+        <div class="article-heading">
+            <h4 class="article-heading--category">{{category.name}}</h4>
+            <h1 class="article-heading--title">{{article.title}}</h1>
+            <h6 class="article-heading--meta-data">BY<span class="author">{{article.author.first_name|upper}} {{article.author.last_name|upper}}</span> ON <span class="date">{{article.created}}</span>
+            </h6>
+            <img src="{{article.image.url}}" alt="musk">
+            <div class="article-heading--article-categories">
+                {% for each_tag in tags  %}
+                <div class="article-heading--article-category"><a href="#">{{each_tag}}</a></div>
+                {% endfor %}
+            </div>
+        </div>
+        <article class="article-text--body">
+            <p>
+                {{article.posts}}
+            </p>
+
+        </article>
+    </section>
+    {% include 'includes/sponsored_ads.html' %}
+{% endblock content %}
+
