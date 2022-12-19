@@ -12,5 +12,4 @@ urlpatterns = [
      path('category/<slug:category_slug>/',category_view,name='category'),
      path('<slug:category_slug>/<slug:article_slug>/',article_view,name='article'),
      path('search/',search_view,name='search'),
-
 ]
