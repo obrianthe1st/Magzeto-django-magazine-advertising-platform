@@ -34,7 +34,7 @@
                 {% for each_article in politics_articles_1  %}
                 <div class="articles--layout-card-info">
                     <img src="{{each_article.image.url}}" alt="xi-trump">
-                    <div class="articles--layout-article-category"><a href="#">{{each_article.category.name}}</a></div>
+                    <div class="articles--layout-article-category"><a href="{{each_article.get_absolute_url}}">{{each_article.category.name}}</a></div>
                     <h5 class="articles--layout-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a>
                     </h5>
                     <div class="articles--layout-article-desc">
@@ -48,7 +48,7 @@
                 {% for each_article in politics_articles_2  %}
                 <div class="articles--layout-card-info">
                     <img src="{{each_article.image.url}}" alt="xi-trump">
-                    <div class="articles--layout-article-category"><a href="#">{{each_article.category.name}}</a></div>
+                    <div class="articles--layout-article-category"><a href="{{each_article.get_absolute_url}}">{{each_article.category.name}}</a></div>
                     <h5 class="articles--layout-title"><a href="{{each_article.get_absolute_url}}">{{each_article.title}}</a>
                     </h5>
                     <div class="articles--layout-article-desc">
