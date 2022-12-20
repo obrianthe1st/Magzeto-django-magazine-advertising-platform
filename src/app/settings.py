@@ -223,8 +223,18 @@ SITE_ID = 1
 #all-auth configuration'
 ACCOUNT_EMAIL_REQUIRED = True
 
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
-# LOGIN_REDIRECT = ''
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_FORMS = {
+'signup': 'apps.authors.forms.CustomSignupForm',
+}
+
+ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+ACCOUNT_LOGIN_REDIRECT_URL ='/'
+
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 #######################################################################################################
 
