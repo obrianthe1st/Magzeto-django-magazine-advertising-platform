@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.8.16-alpine
 
 ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt

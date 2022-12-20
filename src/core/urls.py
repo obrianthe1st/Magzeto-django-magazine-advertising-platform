@@ -10,6 +10,6 @@ urlpatterns = [
      #path('', test_celery, name="celery_view"),
      path('',home_view,name='home_view'),
      path('category/<slug:category_slug>/',category_view,name='category'),
-     path('<slug:category_slug>/<slug:article_slug>/',article_view,name='article'),
+     path('article/<slug:category_slug>/<slug:article_slug>/',article_view,name='article'),
      path('search/',search_view,name='search'),
 ]
