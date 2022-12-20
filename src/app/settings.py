@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.authors',
     'apps.article',
     'apps.category',
+    'apps.ads.dashboard',
 
     #third party
     'celery',
