@@ -220,6 +220,10 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 
+#all-auth configuration'
+ACCOUNT_EMAIL_REQUIRED = True
+
+
 #######################################################################################################
 
 # LOGGING = {
