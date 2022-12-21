@@ -10,3 +10,5 @@ login.html
 logout.html
 signup.html
 email.html
+dashboard_base.html
+dashboard.html

@@ -1,0 +1,65 @@
+{% extends 'ads/dashboard_base.html' %} 
+
+{% load static %}
+
+{% block content %}
+    <div class="dashboard-section-analytics">
+        <div class="dashboard-section-analytics-date">
+            <select class=" custom-select date-select-form" name="date" id="date-select">
+                <option selected value="7-days"><i class="fa-regular fa-calendar-days"></i> Last 7 days</option>
+                <option value="1-month">Last Month</option>
+                <option value="3-month">Last 3 Months</option>
+                <option value="6-month">Last 6 Months</option>
+                <option value="9-month">Last 9 Months</option>
+                <option value="12-month">Last 12 Months</option>
+            </select>
+        </div>
+        <div class="dashboard-section-analytics-charts">
+            <div class="dashboard-section-charts-1">
+                <div id="chart-total-spend-container"></div>
+                <div id="chart-impressions-container"></div>
+                <div id="chart-clicks-container"></div>
+            </div>
+            <div class="dashboard-section-charts-2">
+                <div id="chart-conversion-container">
+
+                </div>
+                <div class="chart-performing-campaigns">
+                    <h3>Top 3 Performing Campaigns</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Campaign</th>
+                                <th scope="col">Spend</th>
+                                <th scope="col">CTR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="campaign-name">Marketing ads</td>
+                                <td class="campaign-spend">$514</td>
+                                <td class="campaign CTR">5.6%</td>
+                            </tr>
+                            <tr>
+                                <td>Email Marketing</td>
+                                <td>$320</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Ad campaigns</td>
+                                <td>$23</td>
+                                <td>18.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+

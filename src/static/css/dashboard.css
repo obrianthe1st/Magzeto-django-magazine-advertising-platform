@@ -1,0 +1,272 @@
+@font-face {
+  font-family: roboto-bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold-italic;
+  src: url(../fonts/Roboto-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+@font-face {
+  font-family: roboto-medium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+:root {
+  --primary: #1d67de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: roboto-italic, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.7;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***********************************************Navbar*******************************************/
+.navigation nav {
+  background-color: #16113a;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+}
+
+.navbar-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-icons .fa-solid {
+  font-size: 30px;
+  color: white;
+}
+
+.navbar-icons li {
+  margin: 5px 10px;
+}
+
+/***************************************************************************************************/
+.dashboard-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-section-sidebar {
+  background-color: #16113a;
+  width: 7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-section-sidebar .dashboard-section-sidebar-nav li {
+  margin: 80px 0px;
+  padding: 20px 5px;
+}
+
+.dashboard-section-sidebar .dashboard-section-sidebar-nav .fa-solid {
+  color: white;
+  font-size: 30px;
+}
+
+.dashboard-section-sidebar-nav-icon .sidebar-nav-icon {
+  transition: all 0.1s ease-in;
+}
+
+.dashboard-section-icon-container {
+  color: white;
+  background-color: #1d67de;
+  z-index: 15;
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  position: absolute;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.display-icon {
+  display: none;
+}
+
+/***************************************************************************************************/
+
+.dashboard-section-analytics {
+  width: 97vw;
+  background-color: #332b6b;
+}
+
+.dashboard-section-analytics-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dashboard-section-analytics-date select {
+  background-color: #00d6ff;
+  color: black;
+  width: 10vw;
+}
+
+.dashboard-section-analytics-date .select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.dashboard-section-analytics-date .select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+.dashboard-section-analytics-date .select-items div,
+.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+.dashboard-section-analytics-date .select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.dashboard-section-analytics-date .select-hide {
+  display: none;
+}
+
+.dashboard-section-analytics-date .select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/**************************************************************************************************/
+.dashboard-section-analytics .dashboard-section-analytics-charts {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-1
+  div {
+  width: 600px;
+  margin: 10px 20px;
+  height: 220px;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  #chart-conversion-container {
+  width: 600px;
+  margin: 10px 20px;
+  height: 300px;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2 {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  .chart-performing-campaigns {
+  background-color: #16113a;
+  padding: 20px;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  .chart-performing-campaigns
+  h3 {
+  color: white;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  .chart-performing-campaigns
+  table {
+  color: white;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  .chart-performing-campaigns
+  table
+  thead {
+  background-color: #44389f;
+  font-size: 15px;
+}
+
+.dashboard-section-analytics
+  .dashboard-section-analytics-charts
+  .dashboard-section-charts-2
+  .chart-performing-campaigns
+  table
+  tr
+  td {
+  font-size: 12px;
+}
+
+footer {
+  background-color: #16113a;
+  color: white;
+}

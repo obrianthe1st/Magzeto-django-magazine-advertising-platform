@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("core.urls")),
     path('accounts/', include('allauth.urls')),
-    path("ads/dashboard/",include('dashboard.urls')),
+    path('dashboard/',include('apps.ads.dashboard.urls')),
 ] 
 
 #this setting is for debug toolbar
