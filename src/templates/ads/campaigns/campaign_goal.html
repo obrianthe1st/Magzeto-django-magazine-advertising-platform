@@ -1,0 +1,26 @@
+{% extends 'ads/campaigns/campaign_base.html' %}
+{% load static %}
+{% block content %}
+<section class="campaign-select-card">
+
+    <a class="campaign-card" href="{% url 'campaign_type' %}">
+        <div class="campaign-select-card--info">
+            <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/undraw_online_art_re_f1pk.svg' %}"
+                alt="website-visits">
+            <h2>Get more website visits</h2>
+        </div>
+    </a>
+
+    <a class="campaign-card" href="{% url 'campaign_type' %}">
+        <div class="campaign-select-card--info">
+            <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/undraw_real_time_analytics_re_yliv.svg' %}"
+                alt="website-visits">
+            <h2>Get more website clicks</h2>
+        </div>
+    </a>
+</section>
+
+{% endblock content %}
+
+
+
