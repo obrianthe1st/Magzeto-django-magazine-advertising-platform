@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
+
+from .forms import CampaignForm
 
 
 # Create your views here.
@@ -19,5 +22,6 @@ def campaign_type(request):
     return render(request,'ads/campaigns/campaign_type.html',context) 
 
 @login_required()
-def campaign_ad_view(request):
+def campaign_settings_view(request):
+    form = CampaignForm(request.POST or None)
     pass

@@ -1,0 +1,44 @@
+{% extends 'ads/campaigns/campaign_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/ad_settings.css' %}" />
+{% endblock css %}
+
+
+{% block content %}
+    <section class="campaign-settings-section container">
+      <h4>General Settings</h4>
+      <div class="campaign-settings-section-type">
+          <span>Type:</span> <span>Search</span>
+      </div>
+
+      <div class="campaign-settings-section-form">
+          <form method="post">
+              <label for="campaign-name">Campaign Name:</label>
+              <input class="form-campaign-name" type="text" name="campaign-name" id="campaign-name">
+              <br />
+
+              <label for="start-date">Start Date:</label>
+              <input class="form-date" type="date" name="start-date" id="start-date">
+              <br />
+
+
+              <label for="end-date">End Date:</label>
+              <input class="form-date" type="date" name="end-date" id="end-date">
+              <br />
+
+
+              <label for="budget">Enter average daily budget (USD):</label>
+              <input class="form-budget" type="number" name="budget" id="budget">
+              <br />
+
+
+              <input class="submit-btn" type="submit" name="submit" value="NEXT">
+
+          </form>
+
+      </div>
+
+    </section>
+
+{% endblock content %}
