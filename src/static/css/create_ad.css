@@ -1,0 +1,307 @@
+@font-face {
+  font-family: roboto-bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold-italic;
+  src: url(../fonts/Roboto-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+@font-face {
+  font-family: roboto-medium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+:root {
+  --primary: #1d67de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: roboto-italic, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.7;
+  position: relative;
+  background: linear-gradient(
+    349deg,
+    rgba(239, 255, 252, 1) 0%,
+    rgba(100, 180, 227, 1) 50%
+  );
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***********************************************Navbar*******************************************/
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+/***********************************************Navbar*******************************************/
+
+.v1 {
+  border: 2px solid white;
+  height: 50px;
+  margin: 0 20px;
+}
+
+.navigation {
+  background-color: #679cf0;
+  color: white;
+}
+
+.ad-manager-info h6 {
+  font-size: 20px;
+}
+
+.campaign-select-card {
+  height: 100vh;
+  width: 98.9vw;
+  background: linear-gradient(
+    349deg,
+    rgba(239, 255, 252, 1) 0%,
+    rgba(100, 180, 227, 1) 50%
+  );
+}
+
+.campaign-select-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.campaign-select-card a {
+  height: 200px;
+  width: 400px;
+  text-decoration: none;
+  color: #1d67de;
+  border: 6px solid white;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.5s ease;
+}
+
+.campaign-select-card a:hover {
+  color: white;
+  background-color: #1d67de;
+  border: none;
+}
+
+.campaign-select-card--info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.campaign-select-card--info-img {
+  width: 200px;
+  height: 200px;
+}
+
+.ad-manager-info {
+  background-color: #6e87ae;
+  padding: 20px 50px;
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0 49%);
+}
+
+/*************************************************************************************************/
+.campaign-settings-banner {
+  font-family: roboto-bold, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.campaign-settings-banner-card {
+  margin: 10px -5px;
+  background-color: #6e87ae;
+  padding: 30px 130px;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+
+/*********************************************************************************************/
+
+.search-ad-settings-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.search-ad-settings-section h4 {
+  font-size: 50px;
+}
+
+.search-ad-settings-form input {
+  margin-bottom: 20px;
+}
+
+.search-ad-settings-form input[type="text"] {
+  padding: 10px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: linear-gradient(
+    349deg,
+    rgba(245, 245, 245, 1) 3%,
+    rgba(100, 180, 227, 1) 100%
+  );
+}
+
+.search-ad-settings-form textarea {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  background: linear-gradient(
+    349deg,
+    rgba(245, 245, 245, 1) 3%,
+    rgba(100, 180, 227, 1) 100%
+  );
+}
+
+.search-ad-settings-form textarea:focus {
+  outline: none;
+}
+
+/* .search-ad-settings-form .ad-desc-form {
+    padding: 10px 50px;
+    width: 100%;
+    font-size: 20px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: linear-gradient(
+      349deg,
+      rgba(245, 245, 245, 1) 3%,
+      rgba(100, 180, 227, 1) 100%
+    );
+  } */
+
+.search-ad-settings-form input[type="url"] {
+  padding: 10px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: linear-gradient(
+    349deg,
+    rgba(245, 245, 245, 1) 3%,
+    rgba(100, 180, 227, 1) 100%
+  );
+}
+
+.search-ad-settings-form input[type="file"] {
+  padding: 10px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: linear-gradient(
+    349deg,
+    rgba(245, 245, 245, 1) 3%,
+    rgba(100, 180, 227, 1) 100%
+  );
+}
+
+.search-ad-settings-form input[type="submit"] {
+  padding: 20px 40px;
+  border: none;
+  margin: 15px;
+  left: 1300px;
+  top: 1700px;
+  position: absolute;
+  background-color: #1d67de;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.3s ease-in;
+}
+
+.search-ad-settings-form input[type="submit"]:hover {
+  background-color: white;
+  color: #1d67de;
+  border: solid 4px #1d67de;
+}
+
+/* .search-ad-settings-form .search-submit-btn {
+    padding: 20px 40px;
+    border: none;
+    margin: 15px;
+    left: 1300px;
+    top: 1100px;
+    position: absolute;
+    background-color: #1d67de;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    transition: all 0.3s ease-in;
+  } */
+
+/* .search-ad-settings-form .search-submit-btn:hover {
+    background-color: white;
+    color: #1d67de;
+    border: solid 4px #1d67de;
+  } */
+
+.search-ad-settings-form label {
+  font-size: 30px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.search-ad-card {
+  margin-bottom: 100px;
+}
+
+.search-ad-card-headline {
+  width: 100%;
+  padding: 20px;
+  color: white;
+}
+/***************************************************************************************************/

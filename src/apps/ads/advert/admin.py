@@ -5,12 +5,12 @@ from .models import SearchAd, SponsoredAd
 # Register your models here.
 
 class SearchAdAdmin(admin.ModelAdmin):
-    list_display =  ('title','created','updated')
+    list_display =  ('title','campaign_id','created','updated')
     list_filter = ('created',)
     date_hierarchy = 'created'
 
 class SponsoredAdAdmin(admin.ModelAdmin):
-    list_display =  ('title','created','updated')
+    list_display =  ('title','campaign_id','created','updated')
     list_filter = ('created',)
     date_hierarchy = 'created'
 

@@ -1,0 +1,50 @@
+{% extends 'ads/campaigns/campaign_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/create_ad.css' %}" />
+{% endblock css %}
+
+
+{% block content %}
+    <section class="campaign-settings-banner">
+        <div class="campaign-settings-banner-card">
+            <h3>Campaign Settings</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Create ads</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Billing</h3>
+        </div>
+    </section>
+
+    <section class="search-ad-settings-section container">
+        <h4>Create ad</h4>
+
+        <div class="search-ad-settings-form">
+           {% if type == "search" %}
+           <form method="post">
+            {% else %}
+            <form method="post" enctype="multipart/form-data">
+           {% endif %}
+                {% csrf_token %}
+                {{ formset.management_data }}
+
+                <div class="search-ad-card">
+                    <h1 class="search-ad-card-headline">Ad</h1>
+                     {{form.as_p}}
+                </div>
+                <input class="sponsored-submit-btn" type="submit" name="submit" value="NEXT">
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+{% endblock content %}
+
+
+
