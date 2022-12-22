@@ -3,7 +3,7 @@
 {% block content %}
     <section class="campaign-select-card">
 
-        <a class="campaign-card" href="search_ad_settings.html">
+        <a class="campaign-card" href="{% url 'campaign_search_settings' %}">
             <div class="campaign-select-card--info">
                 <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/undraw_search_re_x5gq.svg' %}"
                     alt="website-visits">
@@ -11,7 +11,7 @@
             </div>
         </a>
 
-        <a class="campaign-card" href="sponsor_ad_settings.html">
+        <a class="campaign-card" href="{% url 'campaign_sponsored_settings' %}">
             <div class="campaign-select-card--info">
                 <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/undraw_image_post_re_25wd.svg' %}"
                     alt="website-visits">

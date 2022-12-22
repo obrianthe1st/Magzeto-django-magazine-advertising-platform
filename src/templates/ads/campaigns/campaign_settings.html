@@ -4,37 +4,30 @@
 <link rel="stylesheet" href="{% static 'css/ad_settings.css' %}" />
 {% endblock css %}
 
-
 {% block content %}
+
+    <section class="campaign-settings-banner">
+      <div class="campaign-settings-banner-card">
+          <h3>Campaign Settings</h3>
+      </div>
+      <div class="campaign-settings-banner-card">
+          <h3>Create ads</h3>
+      </div>
+      <div class="campaign-settings-banner-card">
+          <h3>Billing</h3>
+      </div>
+    </section>
     <section class="campaign-settings-section container">
       <h4>General Settings</h4>
       <div class="campaign-settings-section-type">
-          <span>Type:</span> <span>Search</span>
+          <span>Type:</span> <span>{{type}}</span>
       </div>
 
       <div class="campaign-settings-section-form">
           <form method="post">
-              <label for="campaign-name">Campaign Name:</label>
-              <input class="form-campaign-name" type="text" name="campaign-name" id="campaign-name">
-              <br />
-
-              <label for="start-date">Start Date:</label>
-              <input class="form-date" type="date" name="start-date" id="start-date">
-              <br />
-
-
-              <label for="end-date">End Date:</label>
-              <input class="form-date" type="date" name="end-date" id="end-date">
-              <br />
-
-
-              <label for="budget">Enter average daily budget (USD):</label>
-              <input class="form-budget" type="number" name="budget" id="budget">
-              <br />
-
-
-              <input class="submit-btn" type="submit" name="submit" value="NEXT">
-
+            {% csrf_token %}
+              {{form.as_p}}
+            <input class="submit-btn" type="submit" name="submit" value="NEXT">
           </form>
 
       </div>
