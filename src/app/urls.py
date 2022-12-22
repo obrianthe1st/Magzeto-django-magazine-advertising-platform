@@ -23,6 +23,8 @@ urlpatterns = [
     path("",include("core.urls")),
     path('accounts/', include('allauth.urls')),
     path('dashboard/',include('apps.ads.dashboard.urls')),
+    path('campaigns/',include('apps.ads.campaign.urls')),
+
 ] 
 
 #this setting is for debug toolbar

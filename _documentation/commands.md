@@ -51,3 +51,6 @@ psql -h db -d main_app -U postgres
 
 - To view all tables of the db once logged in
   \d
+
+--drop tables that have constraints on other table--
+DROP TABLE if exists --table_name-- cascade;

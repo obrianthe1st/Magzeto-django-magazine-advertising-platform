@@ -1,18 +1,18 @@
-{% extends 'campaigns/campaign_base.html' %}
+{% extends 'ads/campaigns/campaign_base.html' %}
 {% load static %}
 {% block content %}
     <section class="campaign-select-card">
 
         <a class="campaign-card" href="campaign_lists.html">
             <div class="campaign-select-card--info">
-                <img class="img-fluid campaign-select-card--info-img" src="img/view-campaigns.svg" alt="website-visits">
+                <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/view-campaigns.svg' %}" alt="website-visits">
                 <h2>View Campaigns</h2>
             </div>
         </a>
 
         <a class="campaign-card" href="campaign_goal.html">
             <div class="campaign-select-card--info">
-                <img class="img-fluid campaign-select-card--info-img" src="img/add-campaigns.svg" alt="website-visits">
+                <img class="img-fluid campaign-select-card--info-img" src="{% static 'images/add-campaigns.svg' %}" alt="website-visits">
                 <h2>Add Campaigns</h2>
             </div>
         </a>

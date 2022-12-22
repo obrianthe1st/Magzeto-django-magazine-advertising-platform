@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'apps.category',
     'apps.ads.dashboard',
     'apps.ads.campaign',
-    'apps.ads.ad',
+    'apps.ads.advert',
     'apps.ads.billing',
 
     #third party
