@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'apps.ads.campaign',
     'apps.ads.advert',
     'apps.ads.billing',
+    'apps.ads.analytics',
 
     #third party
     'celery',
