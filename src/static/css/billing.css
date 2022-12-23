@@ -143,6 +143,11 @@ a {
   color: white;
 }
 
+.billing-campaign-section .billing-group-btn {
+  display: flex;
+  flex-direction: row;
+}
+
 .billing-campaign-section .billing-group-btn a {
   border: none;
   text-decoration: none;
@@ -152,6 +157,22 @@ a {
   margin: 10px;
   font-size: 20px;
   background-color: #647898;
+}
+
+.billing-campaign-section input[type="submit"] {
+  border: none;
+  text-decoration: none;
+  background-color: white;
+  color: white;
+  padding: 20px 50px;
+  margin: 10px;
+  font-size: 20px;
+  background-color: #647898;
+}
+
+.billing-campaign-section input[type="submit"]:hover {
+  background-color: white;
+  color: #1d67de;
 }
 
 .billing-campaign-section .billing-group-btn a:hover {

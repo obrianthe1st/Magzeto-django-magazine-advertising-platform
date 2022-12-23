@@ -132,13 +132,25 @@ def campaign_search_ad_view(request):
 @login_required()
 def campaign_billing(request):
     billing = Billing.objects.filter(card_holder=request.user).count()
-
-    # search_campaigns = SearchCampaign.objects.filter(id=request.session.get('campaign_id'))
-    # sponsored_campaigns = SponsoredCampaign.objects.filter(id=request.session.get('campaign_id'))
-
     context={}
+
     if billing:
-        return render(request,'ads/campaigns/billing.html',context)
+        if request.method == "POST":
+            if request.session.has_key('campaign_id'):
+                if SearchCampaign.objects.filter(id=request.session.get('campaign_id')).exists():
+                    search_campaign = SearchCampaign.objects.get(id=request.session.get('campaign_id'))
+                    search_campaign.active = True
+                    search_campaign.save()
+                    del request.session['campaign_id']
+                    return redirect("dashboard")
+                elif SponsoredCampaign.objects.filter(id=request.session.get('campaign_id')).exists():
+                    sponsored_campaign = SponsoredCampaign.objectsget(id=request.session.get('campaign_id'))
+                    sponsored_campaign.active = True
+                    sponsored_campaign.save()
+                    del request.session['campaign_id']
+                    return redirect("dashboard")
+        else:
+            return render(request,'ads/campaigns/billing.html',context)
     else:
         return render(request,'ads/campaigns/no_billing.html',context)
 
@@ -166,7 +178,5 @@ def campaign_billing_setup(request):
         form = BillingForm()
         context={"form":form}
         return render(request,'ads/campaigns/billing_setup.html',context)
-
-
         
 

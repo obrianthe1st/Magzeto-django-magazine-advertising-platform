@@ -31,8 +31,11 @@
             </div>
         </div>
         <div class="billing-group-btn">
-            <a href="">Update Billing</a>
-            <a href="">Start Campaign</a>
+            <a href="{% url 'campaign_billing_setup' %}">Update Billing</a>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" value="Start Campaign">
+            </form>
         </div>
     </section>
 
