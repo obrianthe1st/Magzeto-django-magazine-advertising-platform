@@ -1,0 +1,165 @@
+@font-face {
+  font-family: roboto-bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold-italic;
+  src: url(../fonts/Roboto-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+@font-face {
+  font-family: roboto-medium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+:root {
+  --primary: #1d67de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: roboto-italic, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.7;
+  position: relative;
+  background: linear-gradient(
+    349deg,
+    rgba(239, 255, 252, 1) 0%,
+    rgba(100, 180, 227, 1) 50%
+  );
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***********************************************Navbar*******************************************/
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+/***********************************************Navbar*******************************************/
+
+.v1 {
+  border: 2px solid white;
+  height: 50px;
+  margin: 0 20px;
+}
+
+.navigation {
+  background-color: #679cf0;
+  color: white;
+}
+
+.ad-manager-info h6 {
+  font-size: 20px;
+}
+
+.ad-manager-info {
+  background-color: #6e87ae;
+  padding: 20px 50px;
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0 49%);
+}
+
+/*************************************************************************************************/
+.campaign-settings-banner {
+  font-family: roboto-bold, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.campaign-settings-banner-card {
+  margin: 10px -5px;
+  background-color: #6e87ae;
+  padding: 30px 130px;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+
+/************************************************************************************************/
+.billing-campaign-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  height: 60vh;
+}
+
+.billing-campaign-section .billing-campaign-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #647898;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+.billing-campaign-section .billing-campaign-info .billing-campaign-cards {
+  color: white;
+  font-size: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.billing-campaign-section .billing-campaign-info-data {
+  color: white;
+}
+
+.billing-campaign-section .billing-group-btn a {
+  border: none;
+  text-decoration: none;
+  background-color: white;
+  color: white;
+  padding: 20px 50px;
+  margin: 10px;
+  font-size: 20px;
+  background-color: #647898;
+}
+
+.billing-campaign-section .billing-group-btn a:hover {
+  background-color: white;
+  color: #1d67de;
+}
+
+/*
+  stop no billing
+  <i class="fa-regular fa-hand"></i>
+  */

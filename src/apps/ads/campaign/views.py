@@ -4,8 +4,10 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from apps.ads.advert.models import SearchAd, SponsoredAd
+from apps.ads.billing.models import Billing
 
 from .forms import (
+    BillingForm,
     CreateSearchAdForm,
     CreateSponsoredAdForm,
     SearchCampaignForm,
@@ -42,6 +44,7 @@ def campaign_search_settings_view(request):
             search_campaign_settings.end_date = form.cleaned_data['end_date']
             search_campaign_settings.budget = form.cleaned_data['budget']
             search_campaign_settings.save()
+            request.session['campaign_id'] = search_campaign_settings.id
             return redirect('create_search_ad')
         else:
             form = SearchCampaignForm()  
@@ -65,6 +68,7 @@ def campaign_sponsored_settings_view(request):
             sponsored_campaign_settings.end_date = form.cleaned_data['end_date']
             sponsored_campaign_settings.budget = form.cleaned_data['budget']
             sponsored_campaign_settings.save()
+            request.session['campaign_id'] = sponsored_campaign_settings.id
             return redirect('create_sponsored_ad')
         else:
             form = SponsoredCampaignForm()  
@@ -78,7 +82,7 @@ def campaign_sponsored_settings_view(request):
 
 @login_required()
 def campaign_sponsored_ad_view(request):
-    sponsored_campaign = SponsoredCampaign.objects.filter(campaign_manager=request.user,active=False,campaign_type='sponsored').latest('created')
+  
 
     context = {}
     sponsored_ad_form = modelformset_factory(SponsoredAd,max_num=2,extra=2,fields=('title','description','link','image',))
@@ -88,9 +92,9 @@ def campaign_sponsored_ad_view(request):
         if sponsoredAdForm.is_valid():
             instances = sponsoredAdForm.save(commit=False)
             for each_ad in instances:
-                each_ad.campaign_id = sponsored_campaign.id
+                each_ad.campaign_id = request.session.get('campaign_id')
                 each_ad.save()
-            return redirect('create_sponsored_ad') #redirect to billing
+            return redirect('campaign_billing') #redirect to billing
         else:
             context = {"form":sponsoredAdForm,"type":"sponsored"}
             return render(request,'ads/campaigns/create_ad.html',context) #redirect to billing
@@ -103,7 +107,6 @@ def campaign_sponsored_ad_view(request):
 
 @login_required()
 def campaign_search_ad_view(request):
-    search_campaign = SearchCampaign.objects.filter(campaign_manager=request.user,active=False,campaign_type='search').latest('created')
 
     context = {}
     search_ad_form = modelformset_factory(SearchAd,max_num=2,extra=2,fields=('title','description','link',))
@@ -113,9 +116,9 @@ def campaign_search_ad_view(request):
         if searchAdForm.is_valid():
             instances = searchAdForm.save(commit=False)
             for each_ad in instances:
-                each_ad.campaign_id = search_campaign.id
+                each_ad.campaign_id = request.session.get('campaign_id')
                 each_ad.save()
-            return redirect('create_search_ad') #redirect to billing
+            return redirect('campaign_billing') #redirect to billing
         else:
             context = {"form":searchAdForm,"type":"search"}
             return render(request,'ads/campaigns/create_ad.html',context) #redirect to billing
@@ -123,4 +126,47 @@ def campaign_search_ad_view(request):
     else:
         context = {"form":searchAdForm,"type":"search"}
         return render(request,'ads/campaigns/create_ad.html',context) #redirect to billing
+
+
+
+@login_required()
+def campaign_billing(request):
+    billing = Billing.objects.filter(card_holder=request.user).count()
+
+    # search_campaigns = SearchCampaign.objects.filter(id=request.session.get('campaign_id'))
+    # sponsored_campaigns = SponsoredCampaign.objects.filter(id=request.session.get('campaign_id'))
+
+    context={}
+    if billing:
+        return render(request,'ads/campaigns/billing.html',context)
+    else:
+        return render(request,'ads/campaigns/no_billing.html',context)
+
+@login_required()
+def campaign_billing_setup(request):
+    context={}
+    if request.method == 'POST':
+        billing_form = BillingForm(request.POST or None)
+        if billing_form.is_valid():
+            billing = Billing()
+            billing.card_holder =  request.user
+            billing.card_holder_name = billing_form.cleaned_data['card_holder_name']
+            billing.card_number = billing_form.cleaned_data['card_number']
+            billing.country = billing_form.cleaned_data['country']
+            billing.month = billing_form.cleaned_data['month']
+            billing.day = billing_form.cleaned_data['day']
+            billing.cvc = billing_form.cleaned_data['cvc']
+            billing.save()
+            return redirect("dashboard")
+        else:
+            form = BillingForm()
+            context={"form":form}
+            return render(request,'ads/campaigns/billing_setup.html',context)
+    else:
+        form = BillingForm()
+        context={"form":form}
+        return render(request,'ads/campaigns/billing_setup.html',context)
+
+
+        
 

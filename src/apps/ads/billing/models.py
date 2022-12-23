@@ -13,7 +13,7 @@ class Billing(models.Model):
                        ("Cayman","Cayman"),
                        ("India","India"),)
     
-    card_holder = models.ForeignKey(Author,on_delete=models.CASCADE)
+    card_holder = models.OneToOneField(Author,on_delete=models.CASCADE)
     card_holder_name = models.CharField(max_length=150)
     card_number = models.CharField(max_length=16)
     country = models.CharField(choices=COUNTRY_CHOICES,default="USA",max_length=20)

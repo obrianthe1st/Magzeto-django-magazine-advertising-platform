@@ -1,0 +1,247 @@
+@font-face {
+  font-family: roboto-bold;
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+  font-family: roboto-bold-italic;
+  src: url(../fonts/Roboto-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+@font-face {
+  font-family: roboto-medium;
+  src: url(../fonts/Roboto-Medium.ttf);
+}
+
+:root {
+  --primary: #1d67de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: roboto-italic, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.7;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***********************************************Navbar*******************************************/
+.navigation nav {
+  background-color: #16113a;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+}
+
+.navbar-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-icons .fa-solid {
+  font-size: 30px;
+  color: white;
+}
+
+.navbar-icons li {
+  margin: 5px 10px;
+}
+
+/***************************************************************************************************/
+.dashboard-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-section-sidebar {
+  background-color: #16113a;
+  width: 7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-section-sidebar .dashboard-section-sidebar-nav li {
+  margin: 80px 0px;
+  padding: 20px 5px;
+}
+
+.dashboard-section-sidebar .dashboard-section-sidebar-nav .fa-solid {
+  color: white;
+  font-size: 30px;
+}
+
+.dashboard-section-sidebar-nav-icon .sidebar-nav-icon {
+  transition: all 0.1s ease-in;
+}
+
+.dashboard-section-icon-container {
+  color: white;
+  background-color: #1d67de;
+  z-index: 15;
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  position: absolute;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.display-icon {
+  display: none;
+}
+
+/***************************************************************************************************/
+
+.dashboard-section .billing-section {
+  width: 97vw;
+  background-color: #5143b9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-section .billing-section .billing-section-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  height: 70%;
+  width: 70%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.dashboard-section .billing-section .billing-section-heading {
+  color: white;
+}
+
+.dashboard-section .billing-section .billing-form {
+  padding: 60px;
+}
+
+.dashboard-section .billing-section .billing-form input {
+  margin: 5px 0px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.dashboard-section .billing-section .billing-form label {
+  font-size: 20px;
+}
+
+.dashboard-section .billing-section .billing-form select {
+  width: 20%;
+}
+
+.dashboard-section .billing-section .billing-form .account-type {
+  padding: 30px;
+  font-size: 20px;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  input:nth-child(5) {
+  margin: 20px 0px;
+}
+
+.dashboard-section .billing-section .billing-form .account-type .submit-btn {
+  padding: 10px;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .submit-btn:hover {
+  background-color: #16113a;
+  color: white;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .debit-credit-card-data {
+  margin: 20px 0px;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .debit-credit-card-data
+  input:first-child {
+  width: 70%;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .debit-credit-card-data
+  input:nth-child(2) {
+  width: 7%;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .debit-credit-card-data
+  input:nth-child(3) {
+  width: 7%;
+}
+
+.dashboard-section
+  .billing-section
+  .billing-form
+  .account-type
+  .debit-credit-card-data
+  input:nth-child(4) {
+  width: 7%;
+}
+
+footer {
+  background-color: #16113a;
+  color: white;
+}

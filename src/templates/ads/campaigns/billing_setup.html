@@ -1,0 +1,50 @@
+{% extends 'ads/dashboard_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/billing_setup.css' %}" />
+{% endblock css %}
+
+{% block content %}
+
+    <div class="billing-section">
+        <div class="billing-section-info">
+            <h1 class="billing-section-heading">Add billing</h1>
+            <form class="billing-form" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                {% comment %} <select class="custom-select country-select" name="country" id="date-select">
+                    <option selected value="USA">USA</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="Bahamas">Bahamas</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Cayman">Cayman</option>
+                    <option value="India">India</option>
+                </select>
+
+                <div class="account-type">
+                    <label for="debit-credit-card">Add credit or debit card: </label>
+                    <div class="debit-credit-card-data">
+                        <input type="text" name="add-card-number">
+                        <input type="text" name="add-month" value="MM">
+                        <input type="text" name="add-year" value="YY">
+                        <input type="text" name="add-cvc" value="CVC">
+                    </div>
+
+                    <label for="debit-credit-card">Card holder name: </label><br />
+                    <input type="text" name="add-card-number"><br />
+
+                    <input type="text" name="zip-code" value="ZIP CODE">
+                    <input class="submit-btn" type="submit" value="Submit" name="submit">
+
+                </div> {% endcomment %}
+                <input class="submit-btn" type="submit" value="Submit" name="submit">
+
+
+            </form>
+
+        </div>
+
+
+
+    </div>
+{% endblock content %}

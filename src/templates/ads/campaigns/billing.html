@@ -1,0 +1,41 @@
+{% extends 'ads/campaigns/campaign_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/billing.css' %}" />
+{% endblock css %}
+
+
+{% block content %}
+    <section class="campaign-settings-banner">
+        <div class="campaign-settings-banner-card">
+            <h3>Campaign Settings</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Create ads</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Billing</h3>
+        </div>
+    </section>
+
+    <section class="billing-campaign-section">
+        <div class="billing-campaign-info">
+            <div class="billing-campaign-cards">
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-apple-pay"></i>
+                <i class="fa-brands fa-cc-amex"></i>
+            </div>
+            <div class="billing-campaign-info-data">
+                <h4>Billing Summary</h4>
+                <h4>Current Balance: <span>$265.95</span></h4>
+            </div>
+        </div>
+        <div class="billing-group-btn">
+            <a href="">Update Billing</a>
+            <a href="">Start Campaign</a>
+        </div>
+    </section>
+
+{% endblock content %}
+
+

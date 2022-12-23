@@ -1,0 +1,33 @@
+{% extends 'ads/campaigns/campaign_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/no_billing.css' %}" />
+{% endblock css %}
+
+
+{% block content %}
+    <section class="campaign-settings-banner">
+        <div class="campaign-settings-banner-card">
+            <h3>Campaign Settings</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Create ads</h3>
+        </div>
+        <div class="campaign-settings-banner-card">
+            <h3>Billing</h3>
+        </div>
+    </section>
+
+
+    <section class="no-billing-campaign-section">
+        <div class="no-billing-data">
+            <h5>You currently have no billing setup</h5>
+            <i class="fa-solid fa-hand"></i>
+            <a href="{% url 'campaign_billing_setup' %}">Setup Billing</a>
+        </div>
+    </section>
+
+
+{% endblock content %}
+
+
