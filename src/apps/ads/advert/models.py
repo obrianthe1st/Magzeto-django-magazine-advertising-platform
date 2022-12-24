@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Advert(models.Model):
@@ -19,11 +20,17 @@ class Advert(models.Model):
         return self.title
 
 
+    
+
+
 class SearchAd(Advert):
 
 
     class Meta:
         verbose_name = 'search_ad'
+
+    def get_absolute_url(self):
+        return reverse("search_ad", args=[self.id])
 
 
 class SponsoredAd(Advert):
@@ -32,3 +39,6 @@ class SponsoredAd(Advert):
 
     class Meta:
         verbose_name = 'sponsored_ad'
+
+    def get_absolute_url(self):
+        return reverse("sponsored_ad", args=[self.id])

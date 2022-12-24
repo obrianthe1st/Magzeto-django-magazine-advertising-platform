@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('dashboard/',include('apps.ads.dashboard.urls')),
     path('campaigns/',include('apps.ads.campaign.urls')),
+    path('ad/',include('apps.ads.analytics.urls')),
 
 ] 
 

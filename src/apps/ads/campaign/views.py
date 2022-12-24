@@ -144,7 +144,7 @@ def campaign_billing(request):
                     del request.session['campaign_id']
                     return redirect("dashboard")
                 elif SponsoredCampaign.objects.filter(id=request.session.get('campaign_id')).exists():
-                    sponsored_campaign = SponsoredCampaign.objectsget(id=request.session.get('campaign_id'))
+                    sponsored_campaign = SponsoredCampaign.objects.get(id=request.session.get('campaign_id'))
                     sponsored_campaign.active = True
                     sponsored_campaign.save()
                     del request.session['campaign_id']
