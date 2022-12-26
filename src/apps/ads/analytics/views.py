@@ -27,6 +27,8 @@ def sponsored_ads_impression_counter(request):
 
 def search_ads_impression_counter(request):
     current_search_page_ads = searchPageAds()
+    if current_search_page_ads is None:
+        return None
     for ad in current_search_page_ads:
         search_ad_impressions = SearchAdImpression.objects.filter(advertisement_name=ad.title,searchad_id=ad.id)
 

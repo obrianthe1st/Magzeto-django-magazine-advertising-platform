@@ -48,8 +48,7 @@ def home_view(request):
         request (_type_): _description_
     """
 
-
-    if sponsored_ads_impression_counter(request) or display_ads.homePageSponsoredAds():
+    if display_ads.homePageSponsoredAds():
         sponsored_ads_impression_counter(request)
         home_page_ads = display_ads.homePageSponsoredAds()
     else:
@@ -87,7 +86,7 @@ def search_view(request):
         _type_: _description_
     """
 
-    if search_ads_impression_counter(request) or display_ads.searchPageAds():
+    if display_ads.searchPageAds():
         search_ads_impression_counter(request)
         search_page_ads = display_ads.searchPageAds()
     else:
