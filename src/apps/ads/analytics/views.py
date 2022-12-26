@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from apps.ads.advert.models import SearchAd, SponsoredAd
+from apps.ads.campaign.models import SearchCampaign, SponsoredCampaign
 
 from .models import (
     SearchAdClicks,
@@ -30,10 +31,26 @@ def sponsored_ad_view(request,sponsored_ad_id=None):
     except SponsoredAd.DoesNotExist as e:
         raise e
 
-    SponsoredAdClicks.objects.bulk_create([SponsoredAdClicks(advertisement_name=sponsored_ad.title,sponsored_ad_id=sponsored_ad.id)])
+    try:
+        campaign = SponsoredCampaign.objects.filter(id=sponsored_ad.campaign_id,active=True)
+    except SponsoredCampaign.DoesNotExist as e:
+        raise e
 
+   
+    sponsored_ad_clicks = SponsoredAdClicks.objects.filter(advertisement_name=sponsored_ad.title,sponsored_ad_id=sponsored_ad.id)
+ 
 
-    return redirect(sponsored_ad.link)
+    if sponsored_ad_clicks:
+        if (sponsored_ad_clicks[0].cpc * sponsored_ad_clicks[0].clicks) > campaign[0].budget:
+                 campaign.active = False
+                 campaign.save()
+        else:
+            sponsored_ad_clicks[0].clicks += 1
+            sponsored_ad_clicks[0].save()
+            return redirect(sponsored_ad.link)
+    else:
+        SponsoredAdClicks.objects.create(advertisement_name=sponsored_ad.title,sponsored_ad_id=sponsored_ad.id,cpc=0.10,clicks=1)
+        return redirect(sponsored_ad.link)
 
 
 def search_ad_view(request,searchad_id=None):

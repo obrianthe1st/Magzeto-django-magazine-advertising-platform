@@ -10,7 +10,7 @@ from .models import (
 
 # Register your models here.
 class SearchAdClicksAdmin(admin.ModelAdmin):
-    list_display = ('advertisement_name','time_stamp','searchad_id')
+    list_display = ('advertisement_name','cpc','clicks','time_stamp','searchad_id')
     list_filter = ('created',)
     date_hierarchy = 'created'
 
@@ -20,7 +20,7 @@ class SearchAdImpressionsAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
 
 class SponsoredAdClicksAdmin(admin.ModelAdmin):
-    list_display = ('advertisement_name','time_stamp','sponsored_ad_id')
+    list_display = ('advertisement_name','cpc','clicks','time_stamp','sponsored_ad_id')
     list_filter = ('created',)
     date_hierarchy = 'created'
 
