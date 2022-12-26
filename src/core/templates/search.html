@@ -9,17 +9,20 @@
 <section class="search-section container">
     {% include 'includes/search_section_form.html' %}
     <div class="search-section--ads">
-        {% for search_ad in search_ads  %}
-        <div class="search-section--ad">
-          <div class="search-section-ad-container">
-            <button class="search-section-ad-btn"><a href="#">ad</a></button>
-            <h6 class="search-section--ad-title"><a href="{{search_ad.get_absolute_url}}">{{search_ad.title}}</a></h6>
+        {% if search_ads %}
+          {% for search_ad in search_ads  %}
+          <div class="search-section--ad">
+            <div class="search-section-ad-container">
+              <button class="search-section-ad-btn"><a href="#">ad</a></button>
+              <h6 class="search-section--ad-title"><a href="{{search_ad.get_absolute_url}}">{{search_ad.title}}</a></h6>
+            </div>
+            <p class="search-section--ad-snippet">
+              <a href="{{search_ad.get_absolute_url}}">{{search_ad.description}}</a>
+            </p>
           </div>
-          <p class="search-section--ad-snippet">
-            <a href="{{search_ad.get_absolute_url}}">{{search_ad.description}}</a>
-          </p>
-        </div>
-        {% endfor %}
+          {% endfor %}
+        {% endif %}
+
       </div>
     {% if articles %}
     <div class="search-section--results">

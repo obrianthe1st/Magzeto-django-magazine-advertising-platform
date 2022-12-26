@@ -2,7 +2,7 @@ import logging
 
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from apps.ads.analytics.utils import display_ads
 from apps.ads.analytics.views import (
@@ -48,8 +48,12 @@ def home_view(request):
         request (_type_): _description_
     """
 
-    # sponsored_ads_impression_counter(request)
-    home_page_ads = display_ads.homePageSponsoredAds()
+
+    if sponsored_ads_impression_counter(request) or display_ads.homePageSponsoredAds():
+        sponsored_ads_impression_counter(request)
+        home_page_ads = display_ads.homePageSponsoredAds()
+    else:
+        home_page_ads = None
 
 
     top_articles = display_top_news_articles(request)
@@ -83,8 +87,12 @@ def search_view(request):
         _type_: _description_
     """
 
-    # search_ads_impression_counter(request)
-    search_page_ads = display_ads.searchPageAds()
+    if search_ads_impression_counter(request) or display_ads.searchPageAds():
+        search_ads_impression_counter(request)
+        search_page_ads = display_ads.searchPageAds()
+    else:
+        search_page_ads = None
+
 
     articles = None
 

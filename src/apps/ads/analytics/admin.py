@@ -15,7 +15,7 @@ class SearchAdClicksAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
 
 class SearchAdImpressionsAdmin(admin.ModelAdmin):
-    list_display = ('advertisement_name','time_stamp','searchad_id')
+    list_display = ('advertisement_name','impressions','time_stamp','searchad_id')
     list_filter = ('created',)
     date_hierarchy = 'created'
 
@@ -25,7 +25,7 @@ class SponsoredAdClicksAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
 
 class SponsoredAdImpresionsAdmin(admin.ModelAdmin):
-    list_display = ('advertisement_name','time_stamp','sponsored_ad_id')
+    list_display = ('advertisement_name','impressions','time_stamp','sponsored_ad_id')
     list_filter = ('created',)
     date_hierarchy = 'created'
 

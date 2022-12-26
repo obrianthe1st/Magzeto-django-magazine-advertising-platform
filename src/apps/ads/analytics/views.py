@@ -17,12 +17,25 @@ from .utils.display_ads import homePageSponsoredAds, searchPageAds
 def sponsored_ads_impression_counter(request):
     current_home_page_ads = homePageSponsoredAds()
     for ad in current_home_page_ads:
-        SponsoredAdImpression.objects.bulk_create([SponsoredAdImpression(advertisement_name=ad.title,sponsored_ad_id=ad.id)])
+        sponsored_impressions = SponsoredAdImpression.objects.filter(advertisement_name=ad.title,sponsored_ad_id=ad.id)
+
+        if sponsored_impressions:
+            sponsored_impressions[0].impressions += 1
+            sponsored_impressions[0].save()
+        else:
+            SponsoredAdImpression.objects.create(advertisement_name=ad.title,sponsored_ad_id=ad.id,impressions=1)
 
 def search_ads_impression_counter(request):
     current_search_page_ads = searchPageAds()
     for ad in current_search_page_ads:
-        SearchAdImpression.objects.bulk_create([SearchAdImpression(advertisement_name=ad.title,searchad_id=ad.id)])
+        search_ad_impressions = SearchAdImpression.objects.filter(advertisement_name=ad.title,searchad_id=ad.id)
+
+        if search_ad_impressions:
+            search_ad_impressions[0].impressions += 1
+            search_ad_impressions[0].save()
+        else:
+            SearchAdImpression.objects.create(advertisement_name=ad.title,searchad_id=ad.id,impressions=1)
+  
         
 def sponsored_ad_view(request,sponsored_ad_id=None):
 
@@ -55,18 +68,39 @@ def sponsored_ad_view(request,sponsored_ad_id=None):
 
 def search_ad_view(request,searchad_id=None):
 
+    # try:
+    #     search_ad = SearchAd.objects.get(id=searchad_id)
+    # except SearchAd.DoesNotExist as e:
+    #     raise e
+
+    # SearchAdClicks.objects.bulk_create([SearchAdClicks(advertisement_name=search_ad.title,searchad_id=search_ad.id)])
+
+
+    # return redirect(search_ad.link)
+
     try:
         search_ad = SearchAd.objects.get(id=searchad_id)
     except SearchAd.DoesNotExist as e:
         raise e
 
-    SearchAdClicks.objects.bulk_create([SearchAdClicks(advertisement_name=search_ad.title,searchad_id=search_ad.id)])
+    try:
+        campaign = SearchCampaign.objects.filter(id=search_ad.campaign_id,active=True)
+    except SearchCampaign.DoesNotExist as e:
+        raise e
 
+   
+    search_ad_clicks = SearchAdClicks.objects.filter(advertisement_name=search_ad.title,searchad_id=search_ad.id)
+ 
 
-    return redirect(search_ad.link)
-
-    
-
-
-
+    if search_ad_clicks:
+        if (search_ad_clicks[0].cpc * search_ad_clicks[0].clicks) > campaign[0].budget:
+                 campaign.active = False
+                 campaign.save()
+        else:
+            search_ad_clicks[0].clicks += 1
+            search_ad_clicks[0].save()
+            return redirect(search_ad.link)
+    else:
+        SearchAdClicks.objects.create(advertisement_name=search_ad.title,searchad_id=search_ad.id,cpc=0.10,clicks=1)
+        return redirect(search_ad.link)
 

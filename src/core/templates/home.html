@@ -64,13 +64,16 @@
 
         <div class="sponsored--ads-container">
             <h4>Sponsored Ads</h4>
-            {% for each_ad in home_page_ads  %}
-            <div class="advert">
-                <h6 class="advert--title">{{each_ad.title}}</h6>
-                <img src="{{each_ad.image.url}}" alt="tesla">
-                <p class="advert--desc">{{each_ad.description|truncatechars:50}}<span><button><a href="{{each_ad.get_absolute_url}}">Click for more</a></button></span></p>
-            </div>
-            {% endfor %}
+            {% if home_page_ads %}
+                {% for each_ad in home_page_ads  %}
+                <div class="advert">
+                    <h6 class="advert--title">{{each_ad.title}}</h6>
+                    <img src="{{each_ad.image.url}}" alt="tesla">
+                    <p class="advert--desc">{{each_ad.description|truncatechars:50}}<span><button><a href="{{each_ad.get_absolute_url}}">Click for more</a></button></span></p>
+                </div>
+                {% endfor %}
+            {% endif %}
+
             {% comment %} <div class="advert">
                 <h6 class="advert--title">New Tesla</h6>
                 <img src="{% static 'images/tesla.jpg' %}" alt="tesla">

@@ -33,7 +33,7 @@ def homePageSponsoredAds():
         for each_campaign in campaigns[:2]:
             campaign_queue.add_campaign(each_campaign)
     else:
-        campaign_queue.add(campaigns)
+        campaign_queue.add_campaign(campaigns)
 
     #get the ads from each campaign
     
@@ -60,7 +60,7 @@ def searchPageAds():
         for each_campaign in campaigns[:2]:
             campaign_queue.add_campaign(each_campaign)
     else:
-        campaign_queue.add(campaigns)
+        campaign_queue.add_campaign(campaigns)
 
     #get the ads from each campaign
     

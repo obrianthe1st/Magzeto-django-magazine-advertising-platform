@@ -8,6 +8,7 @@ class SearchAdImpression(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
     time_stamp =  models.DateTimeField(auto_now_add=True)
     searchad_id = models.IntegerField()
+    impressions = models.IntegerField(null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -43,6 +44,7 @@ class SponsoredAdImpression(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
     time_stamp =  models.DateTimeField(auto_now_add=True)
     sponsored_ad_id = models.IntegerField()
+    impressions = models.IntegerField(null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
