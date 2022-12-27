@@ -1,14 +1,19 @@
+import datetime
 import logging
+from datetime import date
 
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from apps.ads.analytics.utils import display_ads
+from apps.ads.analytics.utils import campaign_analytics, display_ads
 from apps.ads.analytics.views import (
+    search_ad_view,
     search_ads_impression_counter,
+    sponsored_ad_view,
     sponsored_ads_impression_counter,
 )
+from apps.ads.campaign.models import SponsoredCampaign
 from apps.article.models import Article
 from apps.article.utils import (
     display_around_the_world_articles_1,
@@ -47,6 +52,12 @@ def home_view(request):
     Args:
         request (_type_): _description_
     """
+
+    campaign_s =  campaign_analytics.get_campaigns_data(request)
+    campaign_data = campaign_analytics.get_ad_data(campaign_s)
+    
+    campaign_analytics.get_ad_analytics_data(request,campaign_data)
+
 
     if display_ads.homePageSponsoredAds():
         sponsored_ads_impression_counter(request)

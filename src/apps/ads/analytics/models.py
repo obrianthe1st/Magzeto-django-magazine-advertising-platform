@@ -6,7 +6,7 @@ from apps.ads.advert.models import SearchAd, SponsoredAd
 
 class SearchAdImpression(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
-    time_stamp =  models.DateTimeField(auto_now_add=True)
+    time_stamp =  models.DateField(auto_now_add=True)
     searchad_id = models.IntegerField()
     impressions = models.IntegerField(null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -25,7 +25,7 @@ class SearchAdImpression(models.Model):
 
 class SearchAdClicks(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
-    time_stamp =  models.DateTimeField(auto_now_add=True)
+    time_stamp =  models.DateField(auto_now_add=True)
     searchad_id = models.IntegerField()
     cpc = models.FloatField(null=True)
     clicks = models.IntegerField(null=True)
@@ -42,7 +42,7 @@ class SearchAdClicks(models.Model):
 
 class SponsoredAdImpression(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
-    time_stamp =  models.DateTimeField(auto_now_add=True)
+    time_stamp =  models.DateField(auto_now_add=True)
     sponsored_ad_id = models.IntegerField()
     impressions = models.IntegerField(null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -58,7 +58,7 @@ class SponsoredAdImpression(models.Model):
 
 class SponsoredAdClicks(models.Model):
     advertisement_name = models.CharField(max_length=50,blank=True) 
-    time_stamp =  models.DateTimeField(auto_now_add=True)
+    time_stamp =  models.DateField(auto_now_add=True)
     sponsored_ad_id = models.IntegerField()
     cpc = models.FloatField(null=True)
     clicks = models.IntegerField(null=True)
