@@ -101,6 +101,7 @@ def get_ad_analytics_data(request,campaign_data=None):
 
     if search_ad_impressions:
         print("search ad impressions",search_ad_impressions)
+        print()
     
     sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:7]
     
