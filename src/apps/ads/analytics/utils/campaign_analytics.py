@@ -59,6 +59,24 @@ def get_ad_data(campaigns=None):
             ads_list.append(search_ads)
     return ads_list
 
+def get_7_day_analytics():
+    pass
+
+def get_month_analytics():
+    pass
+
+def get_7_day_spend():
+    pass
+
+def get_month_spend():
+    pass
+
+def get_impressions():
+    pass
+
+def get_clicks():
+    pass
+
 def get_ad_analytics_data(request,campaign_data=None):
     clicks_data = []
     impressions_data = []
@@ -69,6 +87,8 @@ def get_ad_analytics_data(request,campaign_data=None):
             for each_ad in each_campaign:
                 advert_ids.add(each_ad.id)
  
+#Look at if I miss days as well for clicks
+#put it into a function as well, put everything in readable format for json
 
     search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:7]
 
