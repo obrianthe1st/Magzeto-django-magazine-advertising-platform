@@ -56,7 +56,10 @@ def home_view(request):
     campaign_s =  campaign_analytics.get_campaigns_data(request)
     campaign_data = campaign_analytics.get_ad_data(campaign_s)
     
-    campaign_analytics.get_ad_analytics_data(request,campaign_data)
+    campaign_analytics.get_spend_data(request,month=6,campaign_data=campaign_data)
+    campaign_analytics.get_impressions_data(request,month=6,campaign_data=campaign_data)
+    campaign_analytics.get_clicks_data(request,month=6,campaign_data=campaign_data)
+    campaign_analytics.top_3_performing_campaigns(request)
 
 
     if display_ads.homePageSponsoredAds():
