@@ -26,7 +26,7 @@ def create_ad_data(days,delete=False):
 
     Args:
         days (int): The number of days worth of data we want to insert into our database. 
-        delete (bool, optional): If delete is True it will delete the database that was created prior and return. If it is true it will not delete the database. Defaults to False.
+        delete (bool, optional): If delete is True it will delete the database that was created prior and return. If it is False it will not delete the database. Defaults to False.
     """
     if delete:
         SearchAdClicks.objects.all().delete()
@@ -76,9 +76,5 @@ class Command(BaseCommand):
     #     parser.add_arguments('days',type=int,help='days that needs to be entered')
 
     def handle(self,*args,**options):
-        create_ad_data(360,delete=False)
+        create_ad_data(360,delete=True)
         self.stdout.write(self.style.SUCCESS("finished creating data"))
-
-        
-        # print(date.today() - timedelta(days=360))
-        # print(date.today() + timedelta(days=60))

@@ -270,3 +270,13 @@ footer {
   background-color: #16113a;
   color: white;
 }
+
+.select-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-submit-btn {
+  width: 0.1%;
+  opacity: 0;
+}

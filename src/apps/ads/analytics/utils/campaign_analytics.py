@@ -95,10 +95,17 @@ def get_spend_data(request,days=None,month=None,campaign_data=None):
 
 
     for each_ad in search_ad_clicks:
-        ad_data['search_ad'].append((each_ad["date"],each_ad["clicks"],))
+        if month is None:
+            ad_data['search_ad'].append((each_ad["date"].strftime('%-d %B'),each_ad["clicks"],))
+        else:
+            ad_data['search_ad'].append((each_ad["date"].strftime('%B'),each_ad["clicks"],))
+
 
     for each_ad in sponsored_ad_clicks:
-        ad_data['sponsored_ad'].append((each_ad["date"],each_ad["clicks"],))
+        if month is None:
+            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%-d %B'),each_ad["clicks"],))
+        else:
+            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%B'),each_ad["clicks"],))
 
     for k,v in zip(ad_data['search_ad'],ad_data['sponsored_ad']):
         spend_data["date"].append(k[0])
@@ -123,10 +130,18 @@ def get_impressions_data(request,days=None,month=None,campaign_data=None):
         sponsored_ad_impressions = SponsoredAdImpression.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('date')[month:]
 
     for each_ad in search_ad_impressions:
-        impression_data['search_impression'].append((each_ad["date"],each_ad["impressions"],))
+        if month:
+            impression_data['search_impression'].append((each_ad["date"].strftime('%B'),each_ad["impressions"],))
+        else:
+            impression_data['search_impression'].append((each_ad["date"].strftime('%-d %B'),each_ad["impressions"],))
+
+
 
     for each_ad in sponsored_ad_impressions:
-        impression_data['sponsored_impression'].append((each_ad["date"],each_ad["impressions"],))
+        if month:
+            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%B'),each_ad["impressions"],))
+        else:
+            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%-d %B'),each_ad["impressions"],))
 
     for k,v in zip(impression_data['search_impression'],impression_data['sponsored_impression']):
         impressions["date"].append(k[0])

@@ -5,14 +5,19 @@
 {% block content %}
     <div class="dashboard-section-analytics">
         <div class="dashboard-section-analytics-date">
-            <select class=" custom-select date-select-form" name="date" id="date-select">
-                <option selected value="7-days"><i class="fa-regular fa-calendar-days"></i> Last 7 days</option>
-                <option value="1-month">Last Month</option>
-                <option value="3-month">Last 3 Months</option>
-                <option value="6-month">Last 6 Months</option>
-                <option value="9-month">Last 9 Months</option>
-                <option value="12-month">Last 12 Months</option>
-            </select>
+            <form method="post" class="select-form">
+                {% csrf_token %}
+                <select class=" custom-select date-select-form" name="date" id = "date-select">
+                    <option selected value="7"><i class="fa-regular fa-calendar-days"></i> Last 7 days</option>
+                    <option value="1">Last month</option>
+                    <option value="3">Last 3 Months</option>
+                    <option value="6">Last 6 Months</option>
+                    <option value="9">Last 9 Months</option>
+                    <option value="12">Last 12 Months</option>
+                </select>
+                <input type="submit" value="submit" class="select-submit-btn">
+            </form>
+
         </div>
         <div class="dashboard-section-analytics-charts">
             <div class="dashboard-section-charts-1">

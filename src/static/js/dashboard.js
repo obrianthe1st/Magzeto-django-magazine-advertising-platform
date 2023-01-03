@@ -1,14 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-  $.ajax({
-    type: "GET",
-    url: "/dashboard/hello/",
-    success: function (response) {
-      console.log("success", response.text);
-    },
-    error: function (error) {
-      console.log("success", error);
-    },
+  const selectForm = document.querySelector(".date-select-form");
+  const form = document.querySelector(".select-form");
+  const submitBtn = document.querySelector(".select-submit-btn");
+  const url = window.location.href;
+
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  const csrftoken = getCookie("csrftoken");
+
+  selectForm.addEventListener("change", () => {
+    // console.log(selectForm.value);
+    submitBtn.click();
   });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: url + "show_analytics/",
+      data: {
+        csrfmiddlewaretoken: csrftoken,
+        dateType: selectForm.value,
+      },
+      success: function (response) {
+        console.log(response.data);
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  });
+
+  // $.ajax({
+  //   type: "GET",
+  //   url: "/dashboard/show_analytics/",
+  //   success: function (response) {
+  //     console.log("success", response.text);
+  //   },
+  //   error: function (error) {
+  //     console.log("success", error);
+  //   },
+  // });
 
   Highcharts.chart("chart-total-spend-container", {
     chart: {
