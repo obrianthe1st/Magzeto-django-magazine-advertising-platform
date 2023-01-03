@@ -1,4 +1,5 @@
 import datetime
+from collections import OrderedDict
 from datetime import date
 from datetime import datetime as Datetime
 
@@ -104,7 +105,7 @@ def get_spend_data(request,days=None,month=None,campaign_data=None):
         spend_data["spend"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
 
 
-    return spend_data
+    return dict(spend_data)
 
 def get_impressions_data(request,days=None,month=None,campaign_data=None):
     advert_ids = get_advert_ids(campaign_data=campaign_data)
@@ -131,7 +132,7 @@ def get_impressions_data(request,days=None,month=None,campaign_data=None):
         impressions["date"].append(k[0])
         impressions["impressions"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
 
-    return impressions
+    return dict(impressions)
 
 
 def get_clicks_data(request,days=None,month=None,campaign_data=None):
@@ -159,15 +160,71 @@ def get_clicks_data(request,days=None,month=None,campaign_data=None):
         clicks["date"].append(k[0])
         clicks["clicks"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
 
-    return clicks
+    return dict(clicks)
 
 def impressions_VS_clicks_data(request,days=None,month=None,campaign_data=None):
-        pass
+    clicks_impressions_data = []
+
+    if month is None:
+        clicks = get_clicks_data(request,days=days,campaign_data=campaign_data)
+        impressions = get_impressions_data(request,days=days,campaign_data=campaign_data)
+    else:
+        clicks = get_clicks_data(request,month=month,campaign_data=campaign_data)
+        impressions = get_impressions_data(request,month=month,campaign_data=campaign_data)
+
+    return(dict(clicks),dict(impressions))
 
 def top_3_performing_campaigns(request):
-    campaign_data = get_campaigns_data(request)
-    all_ads = get_ad_data(campaigns=campaign_data)
-    print(all_ads)
+    performing_campaigns = {}
+    top_3_performing_campaigns = []
+    campaign_s = get_campaigns_data(request)
+    campaign_data = get_ad_data(campaigns=campaign_s)
+
+    advert_ids = get_advert_ids(campaign_data=campaign_data)
+
+    search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).values('searchad_id').annotate(clicks=Sum('clicks')).order_by('searchad_id')
+
+    search_ad_impressions = SearchAdImpression.objects.filter(searchad_id__in=advert_ids).values('searchad_id',).annotate(impressions=Sum('impressions')).order_by('searchad_id')
+
+    sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).values('sponsored_ad_id').annotate(clicks=Sum('clicks')).order_by('sponsored_ad_id')
+
+    sponsored_ad_impressions = SponsoredAdImpression.objects.filter(sponsored_ad_id__in=advert_ids).values('sponsored_ad_id').annotate(impressions=Sum('impressions')).order_by('sponsored_ad_id')
+
+    for ad1, ad2 in zip(search_ad_clicks,search_ad_impressions):
+        performing_campaigns[get_campaign_name(ad1['searchad_id'])] = {
+        'spend':round((ad1['clicks'] * 0.01),2),'CTR':round(((ad1['clicks'] / ad2['impressions']) * 100),2)}
+
+
+    for ad1, ad2 in zip(sponsored_ad_clicks,sponsored_ad_impressions):
+        performing_campaigns[get_campaign_name(ad1['sponsored_ad_id'])] = {
+        'spend':round((ad1['clicks'] * 0.01),2),'CTR':round(((ad1['clicks'] / ad2['impressions']) * 100),2)}
+
+    sorted_campaigns = OrderedDict(sorted(performing_campaigns.items(), key=lambda x: x[1]['CTR']))
+    
+    if len(sorted_campaigns) < 3:
+        return sorted_campaigns
+    else:
+        for i in range(0,3):
+            top_3_performing_campaigns.append((list(sorted_campaigns.keys())[i],list(sorted_campaigns.values())[i]))
+        return dict(top_3_performing_campaigns)
+
+
+def get_campaign_name(ad_id=None):
+    """
+    Gets campaign name based on id
+    """
+    campaign_name = None
+
+    ads = SearchAd.objects.filter(id=ad_id)
+    if ads:
+        campaign = SearchCampaign.objects.filter(id=ads[0].campaign_id)
+        campaign_name = campaign[0].name
+    else:
+        ads = SponsoredAd.objects.filter(id=ad_id)
+        campaign = SponsoredCampaign.objects.filter(id=ads[0].campaign_id)
+        campaign_name = campaign[0].name
+    return campaign_name
+
 
 
 def get_advert_ids(campaign_data=None):
