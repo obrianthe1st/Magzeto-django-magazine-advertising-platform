@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  $.ajax({
+    type: "GET",
+    url: "/dashboard/hello/",
+    success: function (response) {
+      console.log("success", response.text);
+    },
+    error: function (error) {
+      console.log("success", error);
+    },
+  });
+
   Highcharts.chart("chart-total-spend-container", {
     chart: {
       type: "line",
