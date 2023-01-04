@@ -61,20 +61,20 @@ def get_ad_data(campaigns=None):
     return ads_list
 
 
-def get_search_ad_clicks_data(request,days=None,month=None,campaign_data=None):
+# def get_search_ad_clicks_data(request,days=None,month=None,campaign_data=None):
 
-    advert_ids = get_advert_ids(campaign_data=campaign_data)
+#     advert_ids = get_advert_ids(campaign_data=campaign_data)
     
-    if month is None:
-        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:days]
-    else:
-        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
+#     if month is None:
+#         search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:days]
+#     else:
+#         search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
 
     
-    if search_ad_clicks:
-        for each_data in search_ad_clicks:
-            print(each_data["date"].strftime("%B"),each_data['clicks'])
-        print("search ad clicks",len(search_ad_clicks))
+#     if search_ad_clicks:
+#         for each_data in search_ad_clicks:
+#             print(each_data["date"].strftime("%B"),each_data['clicks'])
+#         print("search ad clicks",len(search_ad_clicks))
 
 
 
@@ -89,28 +89,30 @@ def get_spend_data(request,days=None,month=None,campaign_data=None):
 
         sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:days]
     else:
-        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
+        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:month]
 
-        sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
+        sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:month]
 
 
     for each_ad in search_ad_clicks:
         if month is None:
-            ad_data['search_ad'].append((each_ad["date"].strftime('%-d %B'),each_ad["clicks"],))
+            ad_data['search_ad'].append((each_ad["date"].strftime('%-d %b'),each_ad["clicks"],))
         else:
-            ad_data['search_ad'].append((each_ad["date"].strftime('%B'),each_ad["clicks"],))
+            ad_data['search_ad'].append((each_ad["date"].strftime('%b'),each_ad["clicks"],))
 
 
     for each_ad in sponsored_ad_clicks:
         if month is None:
-            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%-d %B'),each_ad["clicks"],))
+            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%-d %b'),each_ad["clicks"],))
         else:
-            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%B'),each_ad["clicks"],))
+            ad_data['sponsored_ad'].append((each_ad["date"].strftime('%b'),each_ad["clicks"],))
 
     for k,v in zip(ad_data['search_ad'],ad_data['sponsored_ad']):
         spend_data["date"].append(k[0])
         spend_data["spend"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
-
+    
+    (spend_data['date']).reverse()
+    (spend_data['spend']).reverse()
 
     return dict(spend_data)
 
@@ -125,27 +127,30 @@ def get_impressions_data(request,days=None,month=None,campaign_data=None):
 
         sponsored_ad_impressions = SponsoredAdImpression.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('-date')[:days]
     else:
-        search_ad_impressions = SearchAdImpression.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('date')[month:]
+        search_ad_impressions = SearchAdImpression.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('-date')[:month]
 
-        sponsored_ad_impressions = SponsoredAdImpression.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('date')[month:]
+        sponsored_ad_impressions = SponsoredAdImpression.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(impressions=Sum('impressions')).order_by('-date')[:month]
 
     for each_ad in search_ad_impressions:
         if month:
-            impression_data['search_impression'].append((each_ad["date"].strftime('%B'),each_ad["impressions"],))
+            impression_data['search_impression'].append((each_ad["date"].strftime('%b'),each_ad["impressions"],))
         else:
-            impression_data['search_impression'].append((each_ad["date"].strftime('%-d %B'),each_ad["impressions"],))
+            impression_data['search_impression'].append((each_ad["date"].strftime('%-d %b'),each_ad["impressions"],))
 
 
 
     for each_ad in sponsored_ad_impressions:
         if month:
-            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%B'),each_ad["impressions"],))
+            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%b'),each_ad["impressions"],))
         else:
-            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%-d %B'),each_ad["impressions"],))
+            impression_data['sponsored_impression'].append((each_ad["date"].strftime('%-d %b'),each_ad["impressions"],))
 
     for k,v in zip(impression_data['search_impression'],impression_data['sponsored_impression']):
         impressions["date"].append(k[0])
-        impressions["impressions"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
+        impressions["impressions"].append((k[1] + v[1]))
+
+    (impressions['date']).reverse()
+    (impressions['impressions']).reverse()
 
     return dict(impressions)
 
@@ -161,19 +166,32 @@ def get_clicks_data(request,days=None,month=None,campaign_data=None):
 
         sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncDate('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:days]
     else:
-        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
+        search_ad_clicks = SearchAdClicks.objects.filter(searchad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:month]
 
-        sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('date')[month:]
+        sponsored_ad_clicks = SponsoredAdClicks.objects.filter(sponsored_ad_id__in=advert_ids).order_by().annotate(date=TruncMonth('time_stamp')).values('date').annotate(clicks=Sum('clicks')).order_by('-date')[:month]
 
     for each_ad in search_ad_clicks:
-        clicks_data['search_clicks'].append((each_ad["date"],each_ad["clicks"],))
+        if month:
+            clicks_data['search_clicks'].append((each_ad["date"].strftime('%b'),each_ad["clicks"],))
+        else:
+            clicks_data['search_clicks'].append((each_ad["date"].strftime('%-d %b'),each_ad["clicks"],))
+
+
 
     for each_ad in sponsored_ad_clicks:
-        clicks_data['sponsored_clicks'].append((each_ad["date"],each_ad["clicks"],))
+        if month:
+            clicks_data['sponsored_clicks'].append((each_ad["date"].strftime('%b'),each_ad["clicks"],))
+        else:
+            clicks_data['sponsored_clicks'].append((each_ad["date"].strftime('%-d %b'),each_ad["clicks"],))
+
+
 
     for k,v in zip(clicks_data['search_clicks'],clicks_data['sponsored_clicks']):
         clicks["date"].append(k[0])
-        clicks["clicks"].append(round((k[1] * 0.1) + (v[1] * 0.1),2))
+        clicks["clicks"].append((k[1] + v[1]))
+
+    (clicks['date']).reverse()
+    (clicks['clicks']).reverse()
 
     return dict(clicks)
 

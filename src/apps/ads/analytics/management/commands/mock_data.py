@@ -76,5 +76,5 @@ class Command(BaseCommand):
     #     parser.add_arguments('days',type=int,help='days that needs to be entered')
 
     def handle(self,*args,**options):
-        create_ad_data(360,delete=True)
-        self.stdout.write(self.style.SUCCESS("finished creating data"))
+            create_ad_data(360,delete=False)
+            self.stdout.write(self.style.SUCCESS("process finish"))

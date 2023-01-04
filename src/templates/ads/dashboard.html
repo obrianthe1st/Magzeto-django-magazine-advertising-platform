@@ -9,7 +9,7 @@
                 {% csrf_token %}
                 <select class=" custom-select date-select-form" name="date" id = "date-select">
                     <option selected value="7"><i class="fa-regular fa-calendar-days"></i> Last 7 days</option>
-                    <option value="1">Last month</option>
+                    <option value="1">Last 30 days</option>
                     <option value="3">Last 3 Months</option>
                     <option value="6">Last 6 Months</option>
                     <option value="9">Last 9 Months</option>
@@ -40,21 +40,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for each_campaign in data  %}
                             <tr>
-                                <td class="campaign-name">Marketing ads</td>
-                                <td class="campaign-spend">$514</td>
-                                <td class="campaign CTR">5.6%</td>
-                            </tr>
-                            <tr>
-                                <td>Email Marketing</td>
-                                <td>$320</td>
-                                <td>10%</td>
-                            </tr>
-                            <tr>
-                                <td>Ad campaigns</td>
-                                <td>$23</td>
-                                <td>18.9%</td>
-                            </tr>
+                                <td class="campaign-name">{{each_campaign.0}}</td>
+                                <td class="campaign-spend">{{each_campaign.1.spend}}</td>
+                                <td class="campaign CTR">{{each_campaign.1.CTR}}</td>
+                            </tr>                    
+                            {% endfor %}
                         </tbody>
                     </table>
 
