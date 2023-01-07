@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
@@ -5,7 +6,7 @@ from apps.ads.analytics.utils import campaign_analytics, display_ads
 
 # Create your views here.
 
-
+@login_required
 def dashboard_view(request):
     campaign_s =  campaign_analytics.get_campaigns_data(request)
     campaign_data = campaign_analytics.get_ad_data(campaign_s)

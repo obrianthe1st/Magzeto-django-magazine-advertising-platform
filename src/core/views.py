@@ -53,15 +53,8 @@ def home_view(request):
         request (_type_): _description_
     """
 
-    campaign_s =  campaign_analytics.get_campaigns_data(request)
-    campaign_data = campaign_analytics.get_ad_data(campaign_s)
-    
-    print(campaign_analytics.get_spend_data(request,month=3,campaign_data=campaign_data))
-    print(campaign_analytics.get_impressions_data(request,month=3,campaign_data=campaign_data))
-    print(campaign_analytics.get_clicks_data(request,month=3,campaign_data=campaign_data))
-    print(campaign_analytics.top_3_performing_campaigns(request))
-    print(campaign_analytics.impressions_VS_clicks_data(request,month=3,campaign_data=campaign_data))
 
+    #the login needs to be fixed
     if display_ads.homePageSponsoredAds():
         sponsored_ads_impression_counter(request)
         home_page_ads = display_ads.homePageSponsoredAds()
