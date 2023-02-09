@@ -80,6 +80,31 @@ a {
   cursor: pointer;
 }
 /***********************************************Header**********************************************/
+/*************************************************Ad manager***********************************************/
+.ad-manager-banner {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  padding: 30px;
+}
+
+.ad-manager-banner--heading {
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.ad-manager-banner--subscription button {
+  background-color: rgb(77, 231, 239);
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+/*************************************************Ad manager***********************************************/
 
 /***********************************************Navbar*******************************************/
 .navigation {
