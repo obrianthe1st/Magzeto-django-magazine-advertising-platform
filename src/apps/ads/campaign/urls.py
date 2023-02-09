@@ -12,6 +12,8 @@ from .views import (
     campaign_type,
 )
 
+app_name="campaigns"
+
 urlpatterns = [
     path('',campaign_home,name='campaign_home'),
     path('goal/',campaign_goal,name='campaign_goal'),

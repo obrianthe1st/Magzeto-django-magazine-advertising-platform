@@ -81,7 +81,6 @@ a {
 
 /***************************************************************************************************/
 .dashboard-section {
-  height: 100vh;
   display: flex;
   flex-direction: row;
 }
@@ -128,8 +127,8 @@ a {
 /***************************************************************************************************/
 
 .dashboard-section-analytics {
-  width: 97vw;
-  /*background-color: #332b6b;*/
+  width: 100vw;
+  background-color: #332b6b;
 }
 
 .dashboard-section-analytics-date {
@@ -197,7 +196,7 @@ a {
   .dashboard-section-analytics-charts
   .dashboard-section-charts-1
   div {
-  width: 600px;
+  width: 500px;
   margin: 10px 20px;
   height: 220px;
 }
@@ -206,7 +205,7 @@ a {
   .dashboard-section-analytics-charts
   .dashboard-section-charts-2
   #chart-conversion-container {
-  width: 600px;
+  width: 500px;
   margin: 10px 20px;
   height: 300px;
 }
@@ -225,7 +224,7 @@ a {
   .dashboard-section-charts-2
   .chart-performing-campaigns {
   background-color: #16113a;
-  padding: 20px;
+  padding: 10px;
 }
 
 .dashboard-section-analytics
