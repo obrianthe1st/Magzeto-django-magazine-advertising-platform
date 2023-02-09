@@ -15,6 +15,8 @@ from apps.ads.analytics.models import (
     SponsoredAdClicks,
     SponsoredAdImpression,
 )
+
+
 from apps.ads.campaign.models import (
     SearchAd,
     SearchCampaign,
